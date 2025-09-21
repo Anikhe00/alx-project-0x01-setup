@@ -6,10 +6,12 @@ import { useState } from "react";
 
 const Posts: React.FC<{ posts: PostProps[] }> = ({ posts }) => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [post, setPost] = useState<PostData | null>(null);
   const [allPosts, setAllPosts] = useState<PostData[]>([]);
 
   const handleAddPost = (newPost: PostData) => {
     const postWithID = { ...newPost, id: allPosts.length + 1 };
+    setPost(postWithID);
     setAllPosts([postWithID, ...allPosts]);
     setModalOpen(false);
   };
@@ -42,7 +44,7 @@ const Posts: React.FC<{ posts: PostProps[] }> = ({ posts }) => {
 
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white rounded-lg shadow-lg p-6 w-1/3">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-1/">
             <PostModal
               onClose={() => setModalOpen(false)}
               onSubmit={handleAddPost}
