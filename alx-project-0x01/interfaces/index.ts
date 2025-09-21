@@ -1,3 +1,10 @@
+export interface PostProps {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+}
+
 export interface ButtonProps {
   title: string;
   size?: "small" | "medium" | "large";
